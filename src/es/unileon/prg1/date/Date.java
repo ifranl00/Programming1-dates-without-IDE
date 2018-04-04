@@ -11,17 +11,24 @@ public class Date {
 		this.day = day;
 		this.month = month;
 		this.year = year;
+		if (!accurateDate()){
+			return false;
+		}
+			return true;
+		
+		
+			
+		}
+			
 	}
-	public newDate(){
-		this.day = 01;
-		this.month = 01;
-		this.year = 2018;
+	public Date(){
+		day = 1;
+		month = 1;
+		year = 2018;
 	}
 	
-	public anotherDate( Date){
-		this.day = day;
-		this.month = month;
-		this.year = year;
+	public Date( ){
+		
 	}
 	
 	
@@ -41,19 +48,69 @@ public class Date {
 	
 	//setters:
 	
-	public setDay (int day){
+	public void setDay (int day){
 		this.day = day;
 	}
 	
-	public setMonth (int month){
+	public void setMonth (int month){
 		this.month = month;
 	}
 	
-	public setYear (int year){
+	public void setYear (int year){
 		this.year = year;
 	}
 	
 	//metodos
+	
+	public boolean isDayRight(){
+		switch(this.day){
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12:
+				if (this.day >= 1 && this.day <=31){
+					accurateDay = true;
+				}
+				break;
+			case 2:
+				if (this.day >=1 && this.day <=28){
+					accurateDay = true;
+				}
+				break;	
+			default:	
+				if (this.day >=1 && this.day <= 30){
+					acurrateDay = true;
+				}
+		}
+		return accurateDay;
+	}
+			
+			
+		
+	
+	public boolean accurateDate(){
+		
+		boolean accurateDay = false
+		boolean accurateMonth = false;
+		boolean accurateYear = false;
+		
+		accurateYear = this.year >0;
+		accurateMonth = (this.month >=1) && (this.month >=12);
+		accurateDay = this.isDayRight(this.day);
+	}
+	
+	
+		
+		
+		
+		
+		
+	
+	
+	
 		//metodos isSame
 		
 		boolean isSameDayIf (Date anotherDate){
