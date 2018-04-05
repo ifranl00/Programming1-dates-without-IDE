@@ -286,32 +286,85 @@ public class Date {
 		
 	
 	
-	public String monthsLeft(){
+	public String getMonthsLeft(){
 		StringBuilder months = new StringBuilder();
 		
-		for( int i = this.month+1 ; i <=12; i++){
-				months.append(this.getMonthName());
+		Date fecha = new Date();
+		int j = 0;
+		
+		for( int i = this.month ; i <=12; i++){
+			
+			setMonth(fecha.getMonth() + 1);
+			
+			months.append(this.getMonthName());
 		}
-		return moths.toString();
+		return months.toString();
 	}
 	
 	
 	public String getDaysLeftOfMonth(){
+		
 		StringBuilder daysLeftOfMonth = new StringBuilder();
+		Date fecha = new Date(this);
+		int j = 0;
 		
-		for ( int i = this.day, i
+		for ( int i = this.day, i  <= getDaysOfMonth, i++){
+			
+			setDay(fecha.getDay() + j++ );
+			
+			daysLeftOfMonth.append(this.day +   " _ " + this.month + " _ " + this.year + " _ " );
+		}
+		return fecha.toString();
+	}
+			
+			
 		
+		
+	
+	
+	public int getDaysOfMonth(){
+		int numDays = 0;
+		
+		if ( this.month == 1 || this.month == 3 || this.month == 5 || this.month == 7 || this.month == 8 || this.month == 10 || this.month == 12){
+			numDays = 31;
+		}
+		if ( this.month == 4 || this.month == 6 || this.month == 9 || this.month == 11){
+			numDays = 30;
+		}else
+			numDays = 28;
+		
+		return numDays;
 	}
 	
 	public String getMonthsSameDays(){
 		StringBuilder monthsSameDays = new StringBuilder();
 		
+		int days = getDaysOfMonth();
+		int i;
+		Date fecha = new Date (this);
+		
+	
 		
 		
+		for( i = 1; i <=12,i++){
+			fecha.setMonth(i);
+			if (days == fecha.getDaysOfMonth()){
+				
+				monthsSameDays.append(fecha.getMonthName() + " " );
+			}
+		}
+		
+		return monthsSameDays.toString();
 	}
+				
+		
+		
+		
+		
 	
 	
-	public int daysYearUntilNow(){
+	
+	public int daysPast(){
 	}
 	public int daysOfWeek (int dayJanuaryFirst){
 		int day,today,daysTotal;
