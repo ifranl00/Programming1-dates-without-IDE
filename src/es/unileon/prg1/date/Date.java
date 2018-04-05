@@ -365,10 +365,26 @@ public class Date {
 	
 	
 	public int daysPast(){
+		
+		int i;
+		int daysTotal = 0;
+		int monthsTotal = 0;
+		
+		Date otraFecha = new Date (1,1, this.year);
+		 Date fecha = new Date (this);
+		
+		for( i = otraFecha.getMonth(), i < (fecha.getMonth + 1 ), i++){
+			monthsTotal = 
+		}
+			
+			
+		
+		
+		
 	}
 	public int daysOfWeek (int dayJanuaryFirst){
 		int day,today,daysTotal;
-		daysTotal= this.daysYearUntilNow()-1;
+		daysTotal = this.daysPast()-1;
 		return daysTotal % 7 + dayJanuaryFirst;
 	}
 	
