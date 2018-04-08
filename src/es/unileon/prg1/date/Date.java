@@ -1,26 +1,45 @@
 package es.unileon.prg1.date;
-
+import java.util.Random;
 public class Date {
 	private int day;
 	private int month;
 	private int year;
 	
-	//Constructores:
+//Constructores:
 	
-	public Date(int day, int month, int year){
-		
-		/*if (!accurateDate()){
-			
-			return this.Date();
-			
-		}else
-			*/
-			this.day = day;
-			this.month = month;
+//Constructor1
+	public Date(int day, int month, int year) throws DateException{
 			this.year = year;
-		
-		}
 			
+			// comprobar si el mes y el anyo introducidos no son validos
+			if ((month < 1 || month > 12) && (day < 0 || day > 31)){
+				throw new DateException("Dia " + day + " y mes " + month + 
+				" no son validos " +
+					" Valores posibles : entre 1 y 31 para dia y entre 1 y 12 para mes " );
+			} else {
+				this.day = day;
+				this.month = month;
+			}
+			
+			if (month < 1 || month > 12) {
+				throw new DateException("Mes " + month + " no valido" +
+					" Valores posibles entre 1 y 12.");
+			} else {
+				this.month = month;
+			}
+			
+			
+			//comprobar el dia
+			if (day < 0 || day > 31){
+				throw new DateException("Dia " + day + " no valido " +
+					" Valores posibles entre 1 y 31 " );
+			} else {
+				this.day = day;
+			}
+			
+				
+		}
+//Constructor2
 	
 	public Date(){
 		day = 1;
@@ -28,6 +47,7 @@ public class Date {
 		year = 2018;
 	}
 	
+//Constructor3
 	public Date(Date cp ){ 
 		this.day = cp.getDay();
 		this.month = cp.getMonth();
@@ -37,7 +57,7 @@ public class Date {
 
 	
 	
-	//getters:
+//getters:
 	
 	public int getDay(){
 		return this.day;
@@ -52,7 +72,7 @@ public class Date {
 	
 	
 	
-	//setters:
+//setters:
 	
 	public void setDay (int day){
 		this.day = day;
@@ -66,8 +86,53 @@ public class Date {
 		this.year = year;
 	}
 	
-	//metodos
+	
 		
+	
+	
+	
+			
+//metodos isSame
+		
+	boolean isSameDayIf (Date anotherDate){
+		if ( this.day == anotherDate.getDay()){
+			return true;
+		}else 
+		return false;
+			
+	}
+	boolean isSameMonthIf (Date anotherDate){
+		if ( this.month == anotherDate.getMonth()){
+			return true;
+		}else 
+		return false;
+			
+	}
+	boolean isSameYearIf(Date anotherDate){
+		if ( this.year == anotherDate.getYear() ){
+			return true;
+		}else 
+		return false;
+			
+	}
+		
+	boolean isSameYearDate (Date date){
+		boolean sameYear = false;
+		sameYear = (this.year == date.getYear());
+		return sameYear;
+	}
+	boolean isSameMonthDate (Date date){
+		boolean sameMonth = false;
+		sameMonth = (this.month == date.getMonth());
+		return sameMonth;
+	}
+	boolean isSameDayDate (Date date){
+		boolean sameDay = false;
+		sameDay = (this.day == date.getDay());
+		return sameDay;
+	}
+		
+//metodos que incluyen switch
 	
 	
 	public boolean isDayRight(){
@@ -97,73 +162,6 @@ public class Date {
 		}
 		return accurateDay;
 	}
-			
-			
-		
-	
-	/*public boolean accurateDate(){
-		
-		boolean accurateDay = false
-		boolean accurateMonth = false;
-		boolean accurateYear = false;
-		
-		accurateYear = this.year >0;
-		accurateMonth = (this.month >=1) && (this.month >=12);
-		accurateDay = this.isDayRight(this.day);
-	}
-	*/
-	
-	
-		
-		
-		
-		
-		
-	
-	
-	
-		//metodos isSame
-		
-		boolean isSameDayIf (Date anotherDate){
-			if ( this.day == anotherDate.getDay()){
-				return true;
-			}else 
-			return false;
-			
-		}
-		boolean isSameMonthIf (Date anotherDate){
-			if ( this.month == anotherDate.getMonth()){
-				return true;
-			}else 
-			return false;
-			
-		}
-		boolean isSameYearIf(Date anotherDate){
-			if ( this.year == anotherDate.getYear() ){
-				return true;
-			}else 
-			return false;
-			
-		}
-		
-		boolean isSameYearDate (Date date){
-			boolean sameYear = false;
-			sameYear = (this.year == date.getYear());
-			return sameYear;
-		}
-		boolean isSameMonthDate (Date date){
-			boolean sameMonth = false;
-			sameMonth = (this.month == date.getMonth());
-			return sameMonth;
-		}
-		boolean isSameDayDate (Date date){
-			boolean sameDay = false;
-			sameDay = (this.day == date.getDay());
-			return sameDay;
-		}
-		
-		
-	
 	
 	
 	
@@ -253,15 +251,15 @@ public class Date {
 			case 9:
 				if (this.day <= 20){
 					season = "Verano";
-				}else season = "Otoño";
+				}else season = "Otonyo";
 				break;
 			case 10:
 			case 11:
-				season = "Otoño";
+				season = "Otonyo";
 				break;
 			case 12:
 				if (this.day <= 21){
-					season = "Otoño";
+					season = "Otonyo";
 				}else season = "Invierno";
 
 
@@ -271,7 +269,7 @@ public class Date {
 				
 			
 			
-			
+//metodo toString()	
 	public String toString(){
 		
 		
@@ -284,6 +282,7 @@ public class Date {
 		
 		
 	
+//metodos que incluyen bucle for
 	
 	public String getMonthsLeft(){
 		StringBuilder months = new StringBuilder();
@@ -319,8 +318,7 @@ public class Date {
 			
 		
 		
-	
-	
+//metodo necesario para el metodo getDaysLeftOfMonth()
 	public int getDaysOfMonth(){
 		int numDays = 0;
 		
@@ -336,7 +334,8 @@ public class Date {
 		
 		return numDays;
 	}
-	
+//metodos que incluyen bucle for	
+
 	public String getMonthsSameDays(){
 		StringBuilder monthsSameDays = new StringBuilder();
 		
@@ -357,38 +356,119 @@ public class Date {
 		
 		return monthsSameDays.toString();
 	}
+// Metodo numRandomTriesEqualDate1() (empleando un while)
+	
+	public int numRandomTriesEqualDate1(){
+		
+		int year;
+		int month;
+		int day;
+		int attempts = 0;
+		boolean equalDate = false;
+		
+		while (!equalDate){
+			day = (int)(Math.random() * 31) + 1;
+			month = (int)(Math.random() * 12) +1;
+			year = this.year;
+			
+			if(day == this.day && month == this.month && year == this.year){
+				equalDate = true;
+				System.out.println(" Se ha encontrado la misma fecha ");
+			}else{
+				equalDate = false;
+				System.out.println( " Intente de nuevo ");
+				
+			}
+			attempts++;
+		}
+		return attempts;
+	}
+	
+//Metodo numRandomTriesEqualDate2() (empleando un  do-while)
+
+	public int numRandomTriesEqualDate2(){
+		
+		int year;
+		int month;
+		int day;
+		int attempts = 0;
+		boolean equalDate = false;
+		
+		do{
+			day = (int)(Math.random() * 31) + 1;
+			month = (int)(Math.random() * 12) +1;
+			year = this.year;
+			
+			if(day == this.day && month == this.month ){
+				equalDate = true;
+				System.out.println(" Se ha encontrado la misma fecha ");
+			}else{
+				equalDate = false;
+				System.out.println( " Intente de nuevo ");
+				
+			}
+			attempts++;
+		}
+		while(!equalDate);
+		return attempts;	
+		}
+		
+
+			
+	
+
+
+	
 				
 		
 		
 		
 		
 	
-	/*
+//metodos que incluyen bucle for
 	
 	public int daysPast(){
 		
-		int i;
+		
+		int i ;
 		int daysTotal = 0;
-		int monthsTotal = 0;
 		
-		Date otraFecha = new Date (1,1, this.year);
-		 Date fecha = new Date (this);
 		
-		for( i = otraFecha.getMonth(), i < (fecha.getMonth + 1 ), i++){
-			monthsTotal = 
+		try{
+			
+			Date fecha = new Date (1,1, this.year);
+			
+			for( i = 1; i < this.month; i++){
+				daysTotal = fecha.getDaysOfMonth();
+			
+				fecha.setMonth(i + 1);
+			}
+		}catch (DateException e ){
+			System.out.println(e.getMessage());
 		}
-			
-			
 		
-		
-		
-	}
-	public int daysOfWeek (int dayJanuaryFirst){
-		int day,today,daysTotal;
-		daysTotal = this.daysPast()-1;
-		return daysTotal % 7 + dayJanuaryFirst;
+		return daysTotal + (this.day - 1);
 	}
 	
 	
-*/
+	
+// metodo daysOfWeek
+	public int daysOfWeek(int dayJanuaryFirst){
+		
+	int daysTotal = 0;
+	
+
+	daysTotal = this.daysPast() - 1;
+
+	return daysTotal % 7 + (dayJanuaryFirst % 7) + 1 ;
+
+	}
+
+
+	
+	
+	
+
+
 }
+
